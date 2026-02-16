@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Portfolio LMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-user">
+                    <div class="avatar" id="avatarStudent">S</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">User</div>
+                        <small style="opacity: 0.8;">Student</small>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="#dashboard" class="sidebar-link active" onclick="showSection('dashboard')">Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#my-courses" class="sidebar-link" onclick="showSection('my-courses')">My Courses</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#certificates" class="sidebar-link" onclick="showSection('certificates')">Certificates</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#payments" class="sidebar-link" onclick="showSection('payments')">Payment History</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#profile" class="sidebar-link" onclick="showSection('profile')">Profile</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="greeting">
+                        Good <span id="greeting-time">Morning</span>, <span id="greeting-name">Student</span>! 👋
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-title">📚 Enrolled Courses</div>
+                        <div class="stat-number" id="enrolledCoursesCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">🎓 Certificates</div>
+                        <div class="stat-number" id="certificatesCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">💰 Total Spent</div>
+                        <div class="stat-number" id="totalSpent">Rs. 0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Courses Section -->
+            <section id="my-courses" class="dashboard-section" style="display: none;">
+                <h2>My Courses</h2>
+                <div class="dashboard-grid" id="myCoursesGrid">
+                    <p>No courses enrolled yet.</p>
+                </div>
+                <button class="btn-primary btn-large" onclick="goToExploreCourses()" style="margin-top: var(--space-lg);">
+                    Explore Courses
+                </button>
+            </section>
+
+            <!-- Certificates Section -->
+            <section id="certificates" class="dashboard-section" style="display: none;">
+                <h2>My Certificates</h2>
+                <div id="certificatesContainer">
+                    <p>No certificates earned yet. Complete courses to earn certificates.</p>
+                </div>
+            </section>
+
+            <!-- Payment History Section -->
+            <section id="payments" class="dashboard-section" style="display: none;">
+                <h2>Payment History</h2>
+                <div id="paymentHistoryContainer">
+                    <p>No payment records found.</p>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="dashboard-section" style="display: none;">
+                <h2>My Profile</h2>
+                <div class="dashboard-card">
+                    <form id="profileForm" class="auth-form">
+                        <input type="text" placeholder="Full Name" id="profileName" required>
+                        <input type="email" placeholder="Email" id="profileEmail" required readonly>
+                        <input type="tel" placeholder="Phone Number" id="profilePhone">
+                        <input type="text" placeholder="Address" id="profileAddress">
+                        <input type="file" id="profilePhoto" accept="image/*">
+                        <small style="color: var(--color-text-light);">Max 200KB</small>
+                        <button type="submit" class="btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/student-dashboard.js"></script>
+</body>
+</html>

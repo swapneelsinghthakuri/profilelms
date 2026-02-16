@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Portfolio LMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .payment-container {
+            max-width: 900px;
+            margin: var(--space-lg) auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: var(--space-lg);
+            padding: var(--space-lg);
+        }
+
+        .payment-methods {
+            background-color: var(--color-bg);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .payment-method.active {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary-light);
+        }
+
+        .payment-method input[type="radio"] {
+            margin: 0;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background-color: var(--color-bg-alt);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-top: var(--space-lg);
+        }
+
+        .receipt-upload {
+            background-color: var(--color-bg-alt);
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+            margin-top: var(--space-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .receipt-upload:hover {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary-light);
+        }
+
+        .receipt-upload input {
+            display: none;
+        }
+
+        .order-summary {
+            background-color: var(--color-bg);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: var(--space-lg);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-lg) 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: relative;
+                top: 0;
+            }
+
+            .qr-code {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-icon">📚</span>
+                <span>Portfolio LMS</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="payment-container">
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+            <h2>Payment Method</h2>
+            <form id="paymentForm">
+                <!-- Bank QR -->
+                <label class="payment-method">
+                    <input type="radio" name="paymentMethod" value="bank" checked>
+                    <div>
+                        <div style="font-weight: 600;">🏦 Bank Transfer</div>
+                        <small style="color: var(--color-text-light);">Scan QR & Transfer</small>
+                    </div>
+                </label>
+
+                <!-- eSewa -->
+                <label class="payment-method">
+                    <input type="radio" name="paymentMethod" value="esewa">
+                    <div>
+                        <div style="font-weight: 600;">💳 eSewa</div>
+                        <small style="color: var(--color-text-light);">Online Payment</small>
+                    </div>
+                </label>
+
+                <!-- Khalti -->
+                <label class="payment-method">
+                    <input type="radio" name="paymentMethod" value="khalti">
+                    <div>
+                        <div style="font-weight: 600;">📱 Khalti</div>
+                        <small style="color: var(--color-text-light);">Mobile Wallet</small>
+                    </div>
+                </label>
+
+                <!-- QR Code Display -->
+                <div id="qrDisplay" style="margin-top: var(--space-lg);">
+                    <p style="color: var(--color-text-light); margin-bottom: var(--space-sm);">Scan to Pay:</p>
+                    <div class="qr-code">📲 QR Code</div>
+                </div>
+
+                <!-- Receipt Upload -->
+                <div class="receipt-upload" onclick="document.getElementById('receiptFile').click()">
+                    <input type="file" id="receiptFile" accept="image/*" required>
+                    <div>📸 Upload Payment Receipt</div>
+                    <small style="color: var(--color-text-light);">Max 2MB</small>
+                </div>
+
+                <p id="fileName" style="color: var(--color-text-light); margin-top: var(--space-sm);">No file selected</p>
+
+                <!-- Student Info -->
+                <div style="margin-top: var(--space-lg);">
+                    <h3>Student Information</h3>
+                    <div class="auth-form">
+                        <input type="text" id="studentName" placeholder="Full Name" readonly>
+                        <input type="email" id="studentEmail" placeholder="Email" readonly>
+                        <input type="tel" id="studentPhone" placeholder="Phone Number">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-success" style="width: 100%; margin-top: var(--space-lg);">
+                    Confirm & Enroll
+                </button>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3 style="margin-bottom: var(--space-lg);">Order Summary</h3>
+            <div class="summary-item">
+                <span>Course:</span>
+                <span id="summaryCourseName">-</span>
+            </div>
+            <div class="summary-item">
+                <span>Batch:</span>
+                <span id="summaryBatch">Current</span>
+            </div>
+            <div class="summary-item">
+                <span>Duration:</span>
+                <span id="summaryDuration">4 weeks</span>
+            </div>
+            <div class="summary-item">
+                <span>Price:</span>
+                <span id="summaryPrice">Rs. 0</span>
+            </div>
+            <div class="summary-item" style="border-bottom: 2px solid var(--color-primary);">
+                <span style="opacity: 0.7;">Discount (0%)</span>
+                <span id="discountAmount">Rs. 0</span>
+            </div>
+            <div class="summary-total">
+                <span>Total:</span>
+                <span id="summaryTotal">Rs. 0</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Portfolio LMS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/payment.js"></script>
+</body>
+</html>

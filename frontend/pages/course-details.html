@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Portfolio LMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-icon">📚</span>
+                <span>Portfolio LMS</span>
+            </div>
+            <div class="navbar-auth">
+                <button class="btn-secondary" id="profileBtn" style="display: none;">Profile</button>
+                <button class="btn-danger" id="logoutBtn" style="display: none;" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Details -->
+    <div class="course-details-container">
+        <div class="course-hero">
+            <div class="course-hero-image" id="courseEmoji">📚</div>
+            <div class="course-hero-content">
+                <h1 id="courseTitle">Loading...</h1>
+                <p id="courseCategory" style="color: var(--color-text-light);">Category</p>
+            </div>
+        </div>
+
+        <div class="course-details-content">
+            <div class="details-section">
+                <h3>Description</h3>
+                <p id="courseDescription">Loading...</p>
+            </div>
+
+            <div class="details-section">
+                <h3>Syllabus</h3>
+                <div id="courseSyllabus"></div>
+            </div>
+
+            <div class="details-section">
+                <h3>Course Information</h3>
+                <ul style="list-style: none; color: var(--color-text-light);">
+                    <li>📍 <strong>Instructor:</strong> <span id="courseInstructor">Loading...</span></li>
+                    <li>⏱️ <strong>Duration:</strong> <span id="courseDuration">Loading...</span></li>
+                    <li>👥 <strong>Enrolled Students:</strong> <span id="enrolledCount">0</span></li>
+                </ul>
+            </div>
+
+            <div class="details-section">
+                <h3>Price: Rs. <span id="coursePrice">0</span></h3>
+                <button class="btn-primary btn-large" id="enrollBtn" style="width: 100%; cursor: pointer;">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Portfolio LMS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/course-details.js"></script>
+</body>
+</html>

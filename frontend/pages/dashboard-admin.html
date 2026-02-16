@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Portfolio LMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-user">
+                    <div class="avatar" id="avatarAdmin">A</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Admin</div>
+                        <small style="opacity: 0.8;">Administrator</small>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="#dashboard" class="sidebar-link active" onclick="showSection('dashboard')">Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#payments" class="sidebar-link" onclick="showSection('payments')">Payment Requests</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#users" class="sidebar-link" onclick="showSection('users')">Users</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#courses" class="sidebar-link" onclick="showSection('courses')">All Courses</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="greeting">
+                        Welcome, <span id="greeting-name">Admin</span>! 🔧
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-title">👥 Total Users</div>
+                        <div class="stat-number" id="totalUsersCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">📚 Total Courses</div>
+                        <div class="stat-number" id="totalCoursesCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">⏳ Pending Payments</div>
+                        <div class="stat-number" id="pendingPaymentsCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">💰 Total Revenue</div>
+                        <div class="stat-number" id="totalRevenueCount">Rs. 0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Requests Section -->
+            <section id="payments" class="dashboard-section" style="display: none;">
+                <h2>Payment Requests</h2>
+                <div id="paymentsContainer" style="display: grid; gap: var(--space-lg);">
+                    <p>Loading payment requests...</p>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="dashboard-section" style="display: none;">
+                <h2>Manage Users</h2>
+                <div id="usersContainer" style="display: grid; gap: var(--space-lg);">
+                    <p>Loading users...</p>
+                </div>
+            </section>
+
+            <!-- Courses Section -->
+            <section id="courses" class="dashboard-section" style="display: none;">
+                <h2>All Courses</h2>
+                <div id="coursesContainer" style="display: grid; gap: var(--space-lg);">
+                    <p>Loading courses...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

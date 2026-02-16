@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Portfolio LMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-user">
+                    <div class="avatar" id="avatarTeacher">T</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Teacher</div>
+                        <small style="opacity: 0.8;">Teacher</small>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="#dashboard" class="sidebar-link active" onclick="showSection('dashboard')">Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#my-courses" class="sidebar-link" onclick="showSection('my-courses')">My Courses</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#create-course" class="sidebar-link" onclick="showSection('create-course')">Create Course</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#profile" class="sidebar-link" onclick="showSection('profile')">Profile</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="greeting">
+                        Good <span id="greeting-time">Morning</span>, <span id="greeting-name">Teacher</span>! 👋
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-title">📚 Active Courses</div>
+                        <div class="stat-number" id="activeCoursesCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">👥 Total Students</div>
+                        <div class="stat-number" id="totalStudentsCount">0</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-title">💰 Earnings</div>
+                        <div class="stat-number" id="earningsCount">Rs. 0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Courses Section -->
+            <section id="my-courses" class="dashboard-section" style="display: none;">
+                <h2>My Courses</h2>
+                <div class="dashboard-grid" id="myCoursesGrid">
+                    <p>No courses created yet.</p>
+                </div>
+            </section>
+
+            <!-- Create Course Section -->
+            <section id="create-course" class="dashboard-section" style="display: none;">
+                <h2>Create New Course</h2>
+                <div class="dashboard-card">
+                    <form id="courseForm" class="auth-form">
+                        <input type="text" placeholder="Course Title" id="courseTitle" required>
+                        <textarea placeholder="Course Description" id="courseDescription" rows="4" required></textarea>
+                        <input type="text" placeholder="Category" id="courseCategory" required>
+                        <input type="number" placeholder="Price (Rs.)" id="coursePrice" required>
+                        <input type="text" placeholder="Duration (e.g., 4 weeks)" id="courseDuration">
+                        <input type="text" placeholder="Syllabus (comma separated)" id="courseSyllabus">
+                        <input type="text" placeholder="Course Emoji (e.g., 📚)" id="courseEmoji" maxlength="2">
+                        <button type="submit" class="btn-primary">Create Course</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="dashboard-section" style="display: none;">
+                <h2>My Profile</h2>
+                <div class="dashboard-card">
+                    <form id="profileForm" class="auth-form">
+                        <input type="text" placeholder="Full Name" id="profileName" required>
+                        <input type="email" placeholder="Email" id="profileEmail" required readonly>
+                        <input type="tel" placeholder="Phone Number" id="profilePhone">
+                        <input type="text" placeholder="Address" id="profileAddress">
+                        <input type="file" id="profilePhoto" accept="image/*">
+                        <small style="color: var(--color-text-light);">Max 200KB</small>
+                        <button type="submit" class="btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/teacher-dashboard.js"></script>
+</body>
+</html>
